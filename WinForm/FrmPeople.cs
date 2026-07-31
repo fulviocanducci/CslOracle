@@ -9,7 +9,7 @@ namespace WinForm
         {
             InitializeComponent();
             OracleDataAccess = OracleConnection.Instance;
-            OracleDataAccess.Database.EnsureCreated();
+            //OracleDataAccess.Database.EnsureCreated();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -27,6 +27,13 @@ namespace WinForm
         private void ButEnd_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void BtuNew_Click(object sender, EventArgs e)
+        {
+            using FrmPeopleUpdate frm = new(OracleDataAccess);
+            frm.ShowDialog();
+            DataGrid_Load();
         }
     }
 }

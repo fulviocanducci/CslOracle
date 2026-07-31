@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewPeoples = new DataGridView();
+            ColumnPeopleId = new DataGridViewTextBoxColumn();
+            ColumnPeopleName = new DataGridViewTextBoxColumn();
             textBox1 = new TextBox();
             label1 = new Label();
             BtuNew = new Button();
             ButEnd = new Button();
-            ColumnPeopleId = new DataGridViewTextBoxColumn();
-            ColumnPeopleName = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)DataGridViewPeoples).BeginInit();
             SuspendLayout();
             // 
@@ -46,14 +46,14 @@
             DataGridViewPeoples.AllowUserToAddRows = false;
             DataGridViewPeoples.AllowUserToDeleteRows = false;
             DataGridViewPeoples.BackgroundColor = Color.LightYellow;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            DataGridViewPeoples.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            DataGridViewPeoples.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             DataGridViewPeoples.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridViewPeoples.Columns.AddRange(new DataGridViewColumn[] { ColumnPeopleId, ColumnPeopleName });
             DataGridViewPeoples.Location = new Point(9, 55);
@@ -61,6 +61,29 @@
             DataGridViewPeoples.ReadOnly = true;
             DataGridViewPeoples.Size = new Size(607, 289);
             DataGridViewPeoples.TabIndex = 0;
+            // 
+            // ColumnPeopleId
+            // 
+            ColumnPeopleId.DataPropertyName = "Id";
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "000000";
+            dataGridViewCellStyle5.NullValue = null;
+            ColumnPeopleId.DefaultCellStyle = dataGridViewCellStyle5;
+            ColumnPeopleId.HeaderText = "Id";
+            ColumnPeopleId.Name = "ColumnPeopleId";
+            ColumnPeopleId.ReadOnly = true;
+            ColumnPeopleId.ToolTipText = "Identificação da Pessoa";
+            // 
+            // ColumnPeopleName
+            // 
+            ColumnPeopleName.DataPropertyName = "Name";
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            ColumnPeopleName.DefaultCellStyle = dataGridViewCellStyle6;
+            ColumnPeopleName.HeaderText = "Nome";
+            ColumnPeopleName.Name = "ColumnPeopleName";
+            ColumnPeopleName.ReadOnly = true;
+            ColumnPeopleName.ToolTipText = "Nome Completo";
+            ColumnPeopleName.Width = 445;
             // 
             // textBox1
             // 
@@ -86,6 +109,7 @@
             BtuNew.TabIndex = 3;
             BtuNew.Text = "&Novo";
             BtuNew.UseVisualStyleBackColor = true;
+            BtuNew.Click += BtuNew_Click;
             // 
             // ButEnd
             // 
@@ -97,29 +121,6 @@
             ButEnd.UseVisualStyleBackColor = true;
             ButEnd.Click += ButEnd_Click;
             // 
-            // ColumnPeopleId
-            // 
-            ColumnPeopleId.DataPropertyName = "Id";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "000000";
-            dataGridViewCellStyle2.NullValue = null;
-            ColumnPeopleId.DefaultCellStyle = dataGridViewCellStyle2;
-            ColumnPeopleId.HeaderText = "Id";
-            ColumnPeopleId.Name = "ColumnPeopleId";
-            ColumnPeopleId.ReadOnly = true;
-            ColumnPeopleId.ToolTipText = "Identificação da Pessoa";
-            // 
-            // ColumnPeopleName
-            // 
-            ColumnPeopleName.DataPropertyName = "Name";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            ColumnPeopleName.DefaultCellStyle = dataGridViewCellStyle3;
-            ColumnPeopleName.HeaderText = "Nome";
-            ColumnPeopleName.Name = "ColumnPeopleName";
-            ColumnPeopleName.ReadOnly = true;
-            ColumnPeopleName.ToolTipText = "Nome Completo";
-            ColumnPeopleName.Width = 445;
-            // 
             // FrmPeople
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -130,6 +131,7 @@
             Controls.Add(label1);
             Controls.Add(textBox1);
             Controls.Add(DataGridViewPeoples);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
             Name = "FrmPeople";
             StartPosition = FormStartPosition.CenterScreen;
