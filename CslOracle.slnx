@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Oracle/Oracle.csproj" />
+  <Project Path="WinForm/WinForm.csproj" Id="27140c5e-6404-45b8-b919-97c49e3f3771" />
 </Solution>
