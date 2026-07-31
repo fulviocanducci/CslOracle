@@ -14,10 +14,10 @@ namespace WinForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataGrid_Load();
+            DataGridLoad();
         }
 
-        private void DataGrid_Load()
+        private void DataGridLoad()
         {
             DataGridViewPeoples.DataSource = OracleDataAccess
                 .People
@@ -33,7 +33,7 @@ namespace WinForm
         {
             using FrmPeopleUpdate frm = new(OracleDataAccess);
             frm.ShowDialog();
-            DataGrid_Load();
+            DataGridLoad();
         }
     }
 }
