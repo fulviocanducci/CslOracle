@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace WinForm.DataAccess;
 
@@ -11,8 +12,8 @@ public static class OracleConnection
         Options = new DbContextOptionsBuilder<OracleDataAccess>();
         Options.UseOracle(Value, x =>
         {
-
-        });//.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
+            x.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19);
+        }).LogTo(x => Debug.Print(x), Microsoft.Extensions.Logging.LogLevel.Information);
     }
 
     public static OracleDataAccess Instance => new(Options.Options);

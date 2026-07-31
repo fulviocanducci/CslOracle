@@ -79,6 +79,7 @@
             TxtPrice.Name = "TxtPrice";
             TxtPrice.Size = new Size(141, 23);
             TxtPrice.TabIndex = 7;
+            TxtPrice.TextAlign = HorizontalAlignment.Right;
             // 
             // TxtCreatedAt
             // 
@@ -138,7 +139,9 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmPeopleUpdate";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Pessoas: Modificações";
+            Load += FrmPeopleUpdate_Load;
             ResumeLayout(false);
             PerformLayout();
         }

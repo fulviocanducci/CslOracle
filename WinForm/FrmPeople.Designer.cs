@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewPeoples = new DataGridView();
             ColumnPeopleId = new DataGridViewTextBoxColumn();
             ColumnPeopleName = new DataGridViewTextBoxColumn();
-            textBox1 = new TextBox();
+            TxtSearch = new TextBox();
             label1 = new Label();
             BtuNew = new Button();
             ButEnd = new Button();
@@ -45,30 +45,39 @@
             // 
             DataGridViewPeoples.AllowUserToAddRows = false;
             DataGridViewPeoples.AllowUserToDeleteRows = false;
+            DataGridViewPeoples.AllowUserToResizeColumns = false;
+            DataGridViewPeoples.AllowUserToResizeRows = false;
             DataGridViewPeoples.BackgroundColor = Color.LightYellow;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            DataGridViewPeoples.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            DataGridViewPeoples.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             DataGridViewPeoples.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridViewPeoples.Columns.AddRange(new DataGridViewColumn[] { ColumnPeopleId, ColumnPeopleName });
             DataGridViewPeoples.Location = new Point(9, 55);
             DataGridViewPeoples.Name = "DataGridViewPeoples";
             DataGridViewPeoples.ReadOnly = true;
+            DataGridViewPeoples.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            DataGridViewPeoples.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DataGridViewPeoples.ShowCellErrors = false;
+            DataGridViewPeoples.ShowCellToolTips = false;
+            DataGridViewPeoples.ShowEditingIcon = false;
+            DataGridViewPeoples.ShowRowErrors = false;
             DataGridViewPeoples.Size = new Size(607, 289);
             DataGridViewPeoples.TabIndex = 0;
+            DataGridViewPeoples.CellDoubleClick += DataGridViewPeoples_CellDoubleClick;
             // 
             // ColumnPeopleId
             // 
             ColumnPeopleId.DataPropertyName = "Id";
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "000000";
-            dataGridViewCellStyle5.NullValue = null;
-            ColumnPeopleId.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "000000";
+            dataGridViewCellStyle2.NullValue = null;
+            ColumnPeopleId.DefaultCellStyle = dataGridViewCellStyle2;
             ColumnPeopleId.HeaderText = "Id";
             ColumnPeopleId.Name = "ColumnPeopleId";
             ColumnPeopleId.ReadOnly = true;
@@ -77,20 +86,21 @@
             // ColumnPeopleName
             // 
             ColumnPeopleName.DataPropertyName = "Name";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            ColumnPeopleName.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            ColumnPeopleName.DefaultCellStyle = dataGridViewCellStyle3;
             ColumnPeopleName.HeaderText = "Nome";
             ColumnPeopleName.Name = "ColumnPeopleName";
             ColumnPeopleName.ReadOnly = true;
             ColumnPeopleName.ToolTipText = "Nome Completo";
             ColumnPeopleName.Width = 445;
             // 
-            // textBox1
+            // TxtSearch
             // 
-            textBox1.Location = new Point(9, 26);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(607, 23);
-            textBox1.TabIndex = 1;
+            TxtSearch.Location = new Point(9, 26);
+            TxtSearch.Name = "TxtSearch";
+            TxtSearch.Size = new Size(607, 23);
+            TxtSearch.TabIndex = 1;
+            TxtSearch.KeyUp += TxtSearch_KeyUp;
             // 
             // label1
             // 
@@ -125,11 +135,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(622, 389);
+            ClientSize = new Size(624, 389);
             Controls.Add(ButEnd);
             Controls.Add(BtuNew);
             Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(TxtSearch);
             Controls.Add(DataGridViewPeoples);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
@@ -145,7 +155,7 @@
         #endregion
 
         private DataGridView DataGridViewPeoples;
-        private TextBox textBox1;
+        private TextBox TxtSearch;
         private Label label1;
         private Button BtuNew;
         private Button ButEnd;
