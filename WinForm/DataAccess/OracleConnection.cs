@@ -12,7 +12,7 @@ public static class OracleConnection
         Options = new DbContextOptionsBuilder<OracleDataAccess>();
         Options.UseOracle(Value, x =>
         {
-            x.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19);
+            //x.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19);
         }).LogTo(x => Debug.Print(x), Microsoft.Extensions.Logging.LogLevel.Information);
     }
 
