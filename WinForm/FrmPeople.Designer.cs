@@ -146,7 +146,7 @@
             Name = "FrmPeople";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pessoas";
-            Load += Form1_Load;
+            Load += FrmPeople_Load;
             ((System.ComponentModel.ISupportInitialize)DataGridViewPeoples).EndInit();
             ResumeLayout(false);
             PerformLayout();

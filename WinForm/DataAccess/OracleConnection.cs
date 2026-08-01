@@ -1,20 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 namespace WinForm.DataAccess;
 
-public static class OracleConnection
+public sealed class OracleConnection
 {
-    internal static DbContextOptionsBuilder<OracleDataAccess> Options { get; set; }
-    internal static string Value => "User Id=system;Password=oracle123;Data Source=192.168.2.115:1521/FREEPDB1;";
-    static OracleConnection()
+    public DbContextOptions<OracleDataAccess> Options { get; }
+
+    private const string ConnectionString =
+        "User Id=system;" +
+        "Password=oracle123;" +
+        "Data Source=192.168.2.115:1521/FREEPDB1;";
+
+    private OracleConnection()
     {
-        Options = new DbContextOptionsBuilder<OracleDataAccess>();
-        Options.UseOracle(Value, x =>
-        {
-            //x.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19);
-        }).LogTo(x => Debug.Print(x), Microsoft.Extensions.Logging.LogLevel.Information);
+        Options = new DbContextOptionsBuilder<OracleDataAccess>()
+            .UseOracle(ConnectionString)
+            .LogTo(
+                message => Debug.Print(message),
+                LogLevel.Information)
+            .Options;
     }
 
-    public static OracleDataAccess Instance => new(Options.Options);
+    private static readonly Lazy<OracleConnection> Lazy = new(() => new OracleConnection());
+    public static OracleConnection Instance => Lazy.Value;
+    public OracleDataAccess CreateContext()
+    {
+        return new OracleDataAccess(Options);
+    }
 }

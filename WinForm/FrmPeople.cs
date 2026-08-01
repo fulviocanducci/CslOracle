@@ -1,32 +1,22 @@
-using Microsoft.EntityFrameworkCore;
 using WinForm.DataAccess;
+using WinForm.Repositories;
 
 namespace WinForm
 {
     public partial class FrmPeople : Form
     {
         public readonly OracleDataAccess OracleDataAccess;
+        public readonly RepositoryPeople RepositoryPeople;
         public FrmPeople()
         {
             InitializeComponent();
-            OracleDataAccess = OracleConnection.Instance;
-            //OracleDataAccess.Database.EnsureCreated();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            DataGridLoad();
+            OracleDataAccess = OracleConnection.Instance.CreateContext();
+            RepositoryPeople = new(OracleDataAccess);
         }
 
         private void DataGridLoad()
         {
-            DataGridViewPeoples.DataSource = OracleDataAccess
-                .People
-                .AsNoTracking()
-                .Where(c => c.Name.ToUpper().StartsWith(TxtSearch.Text.ToUpper()))
-                .OrderBy(o => o.Name)
-                .Select(x => new { x.Id, x.Name })
-                .ToList();
+            DataGridViewPeoples.DataSource = RepositoryPeople.Get(TxtSearch.Text);
         }
 
         private void FrmPeopleUpdateShow(int id = 0)
@@ -35,6 +25,7 @@ namespace WinForm
             frm.ShowDialog();
             DataGridLoad();
         }
+
         private void ButEnd_Click(object sender, EventArgs e)
         {
             Close();
@@ -49,9 +40,8 @@ namespace WinForm
         {
             if (e.RowIndex >= 0)
             {
-                DataGridView dataGridView = (DataGridView)sender;
-                object? id = dataGridView?.CurrentRow?.Cells["ColumnPeopleId"].Value;
-                if (id != null && int.TryParse(id.ToString(), out int Id))
+                int Id = ((DataGridView)sender).ToGetIntValue("ColumnPeopleId");
+                if (Id > 0)
                 {
                     FrmPeopleUpdateShow(Id);
                 }
@@ -64,6 +54,11 @@ namespace WinForm
             {
                 DataGridLoad();
             }
+        }
+
+        private void FrmPeople_Load(object sender, EventArgs e)
+        {
+            DataGridLoad();
         }
     }
 }
