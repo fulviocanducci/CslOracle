@@ -23,7 +23,7 @@ namespace WinForm
         {
             using FrmPeopleUpdate frm = new(OracleDataAccess, id);
             frm.ShowDialog();
-            DataGridLoad();
+            if (frm.Updated) DataGridLoad();
         }
 
         private void ButEnd_Click(object sender, EventArgs e)

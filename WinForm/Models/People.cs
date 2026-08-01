@@ -7,19 +7,15 @@ public sealed class People
     public People(string name, decimal price, bool active, DateTime createdAt)
     {
         Id = 0;
-        Name = name;
+        Name = name.ToUpper();
         Price = price;
         Active = active;
         CreatedAt = createdAt;
     }
 
-    public People(int id, string name, decimal price, bool active, DateTime createdAt)
+    public People(int id, string name, decimal price, bool active, DateTime createdAt) : this(name, price, active, createdAt)
     {
         Id = id;
-        Name = name;
-        Price = price;
-        Active = active;
-        CreatedAt = createdAt;
     }
 
     public int Id { get; set; }

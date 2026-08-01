@@ -1,5 +1,6 @@
 ﻿using WinForm.DataAccess;
 using WinForm.Models;
+using WinForm.Records.People;
 
 namespace WinForm.Repositories
 {
@@ -17,13 +18,13 @@ namespace WinForm.Repositories
             return Query().FirstOrDefault(p => p.Id == id);
         }
 
-        public List<People> Get(string name)
+        public List<PeopleList> Get(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                return [.. Query().OrderBy(p => p.Name)];
+                return [.. Query().OrderBy(p => p.Name).Select(c => new PeopleList(c.Id, c.Name))];
             }
-            return [.. Query().Where(p => p.Name.ToUpper().Contains(name.ToUpper())).OrderBy(p => p.Name)];
+            return [.. Query().Where(p => p.Name.ToUpper().Contains(name.ToUpper())).OrderBy(p => p.Name).Select(c => new PeopleList(c.Id, c.Name))];
         }
     }
 }
