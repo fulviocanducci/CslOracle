@@ -16,14 +16,18 @@ public static class FormExtensions
     }
     public static void SetLayoutFocus(this CheckBox checkBox)
     {
-        if (checkBox == null) return;
+        if (checkBox is null)
+        {
+            return;
+        }
+        Font originalFont = checkBox.Font;
         checkBox.GotFocus += (_, _) =>
         {
-            checkBox.Font = new Font(checkBox.Font, SetUnderline(checkBox));
+            checkBox.Font = new Font(originalFont, originalFont.Style | FontStyle.Underline);
         };
         checkBox.LostFocus += (_, _) =>
         {
-            checkBox.Font = new Font(checkBox.Font, DelUnderline(checkBox));
+            checkBox.Font = originalFont;
         };
     }
 
