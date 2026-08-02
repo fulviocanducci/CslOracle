@@ -75,9 +75,9 @@ public partial class FrmPeopleUpdate : Form
             ValidationFailure? first = validation.Errors.FirstOrDefault();
             if (first != null && !string.IsNullOrEmpty(first.PropertyName))
             {
-                if (first.IsValue("Name")) TxtName.Focus();
-                if (first.IsValue("Price")) TxtPrice.Focus();
-                if (first.IsValue("CreatedAt")) TxtCreatedAt.Focus();
+                if (first.IsValue(nameof(People.Name))) TxtName.Focus();
+                if (first.IsValue(nameof(People.Price))) TxtPrice.Focus();
+                if (first.IsValue(nameof(People.CreatedAt))) TxtCreatedAt.Focus();
             }
             return;
         }
