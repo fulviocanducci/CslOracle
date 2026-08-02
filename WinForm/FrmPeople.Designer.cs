@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewPeoples = new DataGridView();
             ColumnPeopleId = new DataGridViewTextBoxColumn();
             ColumnPeopleName = new DataGridViewTextBoxColumn();
@@ -48,14 +48,14 @@
             DataGridViewPeoples.AllowUserToResizeColumns = false;
             DataGridViewPeoples.AllowUserToResizeRows = false;
             DataGridViewPeoples.BackgroundColor = Color.White;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            DataGridViewPeoples.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            DataGridViewPeoples.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             DataGridViewPeoples.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridViewPeoples.Columns.AddRange(new DataGridViewColumn[] { ColumnPeopleId, ColumnPeopleName });
             DataGridViewPeoples.Location = new Point(9, 55);
@@ -75,10 +75,10 @@
             // ColumnPeopleId
             // 
             ColumnPeopleId.DataPropertyName = "Id";
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "000000";
-            dataGridViewCellStyle5.NullValue = null;
-            ColumnPeopleId.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Format = "000000";
+            dataGridViewCellStyle8.NullValue = null;
+            ColumnPeopleId.DefaultCellStyle = dataGridViewCellStyle8;
             ColumnPeopleId.HeaderText = "Id";
             ColumnPeopleId.Name = "ColumnPeopleId";
             ColumnPeopleId.ReadOnly = true;
@@ -87,8 +87,8 @@
             // ColumnPeopleName
             // 
             ColumnPeopleName.DataPropertyName = "Name";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            ColumnPeopleName.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            ColumnPeopleName.DefaultCellStyle = dataGridViewCellStyle9;
             ColumnPeopleName.HeaderText = "Nome";
             ColumnPeopleName.Name = "ColumnPeopleName";
             ColumnPeopleName.ReadOnly = true;
@@ -124,7 +124,7 @@
             // 
             ButNew.Location = new Point(9, 338);
             ButNew.Name = "ButNew";
-            ButNew.Size = new Size(75, 31);
+            ButNew.Size = new Size(76, 31);
             ButNew.TabIndex = 6;
             ButNew.OnPressed += ButNew_OnPressed;
             // 

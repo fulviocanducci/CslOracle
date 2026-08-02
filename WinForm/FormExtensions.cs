@@ -41,19 +41,9 @@ public static class FormExtensions
         return value.Equals(find, StringComparison.OrdinalIgnoreCase);
     }
 
-    public static void Toggle(this Button button, string loading = "Salvando")
+    public static void Toggle(this Button button)
     {
-        if (button.Enabled)
-        {
-            button.Tag = button.Text;
-            button.Enabled = false;
-            button.Text = loading;
-        }
-        else
-        {
-            button.Enabled = true;
-            button.Text = button.Tag?.ToString();
-        }
+        button.Enabled = !button.Enabled;
         button.Update();
         button.Refresh();
     }
