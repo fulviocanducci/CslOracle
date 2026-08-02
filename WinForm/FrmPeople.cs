@@ -26,17 +26,15 @@ namespace WinForm
             if (frm.Updated) DataGridLoad();
         }
 
-        private void ButEnd_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void BtuNew_Click(object sender, EventArgs e)
+        private void ButNew_OnPressed(object sender, EventArgs e)
         {
             FrmPeopleUpdateShow();
         }
 
-
+        private void ButEnd_OnPressed(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void TxtSearch_KeyUp(object sender, KeyEventArgs e)
         {
@@ -49,6 +47,7 @@ namespace WinForm
         private void FrmPeople_Load(object sender, EventArgs e)
         {
             DataGridLoad();
+            CancelButton = (Button)ButEnd;
         }
 
         private void DataGridViewPeoples_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

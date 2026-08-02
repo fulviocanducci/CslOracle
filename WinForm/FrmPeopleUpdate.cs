@@ -25,6 +25,7 @@ namespace WinForm
 
         private async void FrmPeopleUpdate_Load(object sender, EventArgs e)
         {
+            CancelButton = (Button)ButEnd;
             TxtPrice.MaskCurrency();
             ChkActive.SetLayoutFocus();
             SetControlValues();
@@ -39,7 +40,7 @@ namespace WinForm
             TxtName.Focus();
         }
 
-        private void ButEnd_Click(object sender, EventArgs e)
+        private void ButEnd_OnPressed(object sender, EventArgs e)
         {
             Close();
         }
@@ -114,6 +115,7 @@ namespace WinForm
             TxtCreatedAt.Text = createdAt ?? DateTime.Now.ToTextDateTime();
             ChkActive.Checked = active;
         }
+
 
     }
 }

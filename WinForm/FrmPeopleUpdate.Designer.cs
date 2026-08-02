@@ -36,8 +36,8 @@
             label2 = new Label();
             label1 = new Label();
             TxtName = new TextBox();
-            ButEnd = new Button();
             ButSave = new Button();
+            ButEnd = new WinForm.Components.ButEndControl();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -118,31 +118,31 @@
             TxtName.Size = new Size(251, 23);
             TxtName.TabIndex = 1;
             // 
-            // ButEnd
-            // 
-            ButEnd.Location = new Point(195, 154);
-            ButEnd.Name = "ButEnd";
-            ButEnd.Size = new Size(75, 31);
-            ButEnd.TabIndex = 8;
-            ButEnd.Text = "Fecha&r";
-            ButEnd.UseVisualStyleBackColor = true;
-            ButEnd.Click += ButEnd_Click;
-            // 
             // ButSave
             // 
-            ButSave.Location = new Point(6, 154);
+            ButSave.Image = Properties.Resource.Icons_Save;
+            ButSave.ImageAlign = ContentAlignment.MiddleLeft;
+            ButSave.Location = new Point(6, 156);
             ButSave.Name = "ButSave";
-            ButSave.Size = new Size(75, 31);
+            ButSave.Size = new Size(76, 31);
             ButSave.TabIndex = 7;
             ButSave.Text = "&Salvar";
+            ButSave.TextImageRelation = TextImageRelation.ImageBeforeText;
             ButSave.UseVisualStyleBackColor = true;
             ButSave.Click += ButSave_Click;
+            // 
+            // ButEnd
+            // 
+            ButEnd.Location = new Point(194, 156);
+            ButEnd.Name = "ButEnd";
+            ButEnd.Size = new Size(76, 31);
+            ButEnd.TabIndex = 9;
+            ButEnd.OnPressed += ButEnd_OnPressed;
             // 
             // FrmPeopleUpdate
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            CancelButton = ButEnd;
             ClientSize = new Size(276, 192);
             Controls.Add(ButEnd);
             Controls.Add(ButSave);
@@ -170,7 +170,7 @@
         private Label label2;
         private Label label1;
         private TextBox TxtName;
-        private Button ButEnd;
         private Button ButSave;
+        private Components.ButEndControl ButEnd;
     }
 }
