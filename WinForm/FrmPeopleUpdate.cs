@@ -18,7 +18,7 @@ public partial class FrmPeopleUpdate : Form
     {
         InitializeComponent();
         RepositoryPeople = new(oracleDataAccess);
-        PeopleValidation = new PeopleValidation();
+        PeopleValidation = new();
         Id = id;
         Updated = false;
         this.EnterAsTab();
