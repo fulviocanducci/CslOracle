@@ -20,12 +20,13 @@ public partial class FrmPeopleUpdate : Form
         RepositoryPeople = new(oracleDataAccess);
         PeopleValidation = new();
         Id = id;
-        Updated = false;
-        this.EnterAsTab();
+
     }
 
     private async void FrmPeopleUpdate_Load(object sender, EventArgs e)
     {
+        Updated = false;
+        this.EnterAsTab();
         CancelButton = (Button)ButEnd;
         TxtPrice.MaskCurrency();
         ChkActive.SetLayoutFocus();
