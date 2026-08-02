@@ -8,7 +8,7 @@ namespace WinForm.Models.Validations
         {
             RuleFor(p => p.Name)
                 .Cascade(CascadeMode.Stop)
-                .NotEmpty().WithMessage("Nome é exigido.")
+                .NotEmpty().WithMessage("Nome é obrigatório")
                 .MaximumLength(100).WithMessage("Nome com 100 caracteres");
 
             RuleFor(p => p.Price)

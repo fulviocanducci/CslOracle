@@ -47,7 +47,7 @@
             DataGridViewPeoples.AllowUserToDeleteRows = false;
             DataGridViewPeoples.AllowUserToResizeColumns = false;
             DataGridViewPeoples.AllowUserToResizeRows = false;
-            DataGridViewPeoples.BackgroundColor = Color.LightYellow;
+            DataGridViewPeoples.BackgroundColor = Color.White;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
@@ -67,9 +67,10 @@
             DataGridViewPeoples.ShowCellToolTips = false;
             DataGridViewPeoples.ShowEditingIcon = false;
             DataGridViewPeoples.ShowRowErrors = false;
-            DataGridViewPeoples.Size = new Size(607, 289);
-            DataGridViewPeoples.TabIndex = 0;
+            DataGridViewPeoples.Size = new Size(605, 275);
+            DataGridViewPeoples.TabIndex = 2;
             DataGridViewPeoples.CellDoubleClick += DataGridViewPeoples_CellDoubleClick;
+            DataGridViewPeoples.KeyDown += DataGridViewPeoples_KeyDown;
             // 
             // ColumnPeopleId
             // 
@@ -98,7 +99,7 @@
             // 
             TxtSearch.Location = new Point(9, 26);
             TxtSearch.Name = "TxtSearch";
-            TxtSearch.Size = new Size(607, 23);
+            TxtSearch.Size = new Size(605, 23);
             TxtSearch.TabIndex = 1;
             TxtSearch.KeyUp += TxtSearch_KeyUp;
             // 
@@ -108,12 +109,12 @@
             label1.Location = new Point(9, 8);
             label1.Name = "label1";
             label1.Size = new Size(38, 15);
-            label1.TabIndex = 2;
-            label1.Text = "Busca";
+            label1.TabIndex = 0;
+            label1.Text = "&Busca";
             // 
             // BtuNew
             // 
-            BtuNew.Location = new Point(9, 350);
+            BtuNew.Location = new Point(9, 338);
             BtuNew.Name = "BtuNew";
             BtuNew.Size = new Size(75, 31);
             BtuNew.TabIndex = 3;
@@ -123,7 +124,7 @@
             // 
             // ButEnd
             // 
-            ButEnd.Location = new Point(541, 350);
+            ButEnd.Location = new Point(541, 338);
             ButEnd.Name = "ButEnd";
             ButEnd.Size = new Size(75, 31);
             ButEnd.TabIndex = 4;
@@ -135,7 +136,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(624, 389);
+            ClientSize = new Size(624, 377);
             Controls.Add(ButEnd);
             Controls.Add(BtuNew);
             Controls.Add(label1);
@@ -143,6 +144,8 @@
             Controls.Add(DataGridViewPeoples);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmPeople";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pessoas";

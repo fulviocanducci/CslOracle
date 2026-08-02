@@ -16,11 +16,29 @@ namespace WinForm.Repositories
             return result;
         }
 
+        public async Task<bool> CreateAsync(T entity)
+        {
+            if (entity == null) return false;
+            await Context.Set<T>().AddAsync(entity);
+            bool result = await Context.SaveChangesAsync() > 0;
+            Detach(entity);
+            return result;
+        }
+
         public bool Update(T entity)
         {
             if (entity == null) return false;
             Context.Set<T>().Update(entity);
             bool result = Context.SaveChanges() > 0;
+            Detach(entity);
+            return result;
+        }
+
+        public async Task<bool> UpdateAsync(T entity)
+        {
+            if (entity == null) return false;
+            Context.Set<T>().Update(entity);
+            bool result = await Context.SaveChangesAsync() > 0;
             Detach(entity);
             return result;
         }
@@ -34,9 +52,23 @@ namespace WinForm.Repositories
             return result;
         }
 
-        public T? Find(params object[] keyValues)
+        public async Task<bool> DeleteAsync(T entity)
+        {
+            if (entity == null) return false;
+            Context.Set<T>().Remove(entity);
+            bool result = await Context.SaveChangesAsync() > 0;
+            Detach(entity);
+            return result;
+        }
+
+        public T? Find(params object?[]? keyValues)
         {
             return Context.Set<T>().Find(keyValues);
+        }
+
+        public async Task<T?> FindAsync(params object?[]? keyValues)
+        {
+            return await Context.Set<T>().FindAsync(keyValues);
         }
 
         public IQueryable<T> Query()

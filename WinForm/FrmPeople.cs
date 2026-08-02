@@ -36,17 +36,7 @@ namespace WinForm
             FrmPeopleUpdateShow();
         }
 
-        private void DataGridViewPeoples_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                int Id = ((DataGridView)sender).ToGetIntValue("ColumnPeopleId");
-                if (Id > 0)
-                {
-                    FrmPeopleUpdateShow(Id);
-                }
-            }
-        }
+
 
         private void TxtSearch_KeyUp(object sender, KeyEventArgs e)
         {
@@ -59,6 +49,33 @@ namespace WinForm
         private void FrmPeople_Load(object sender, EventArgs e)
         {
             DataGridLoad();
+        }
+
+        private void DataGridViewPeoples_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int id = ((DataGridView)sender).ToGetIntValue("ColumnPeopleId");
+                if (id > 0)
+                {
+                    FrmPeopleUpdateShow(id);
+                }
+            }
+        }
+
+        private void DataGridViewPeoples_KeyDown(object sender, KeyEventArgs e)
+        {
+            var grid = ((DataGridView)sender);
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (grid.CurrentRow is null) return;
+                int id = grid.ToGetIntValue("ColumnPeopleId");
+                if (id > 0)
+                {
+                    FrmPeopleUpdateShow(id);
+                }
+            }
         }
     }
 }
