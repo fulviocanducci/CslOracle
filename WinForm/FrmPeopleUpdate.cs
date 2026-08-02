@@ -20,7 +20,6 @@ public partial class FrmPeopleUpdate : Form
         RepositoryPeople = new(oracleDataAccess);
         PeopleValidation = new();
         Id = id;
-
     }
 
     private async void FrmPeopleUpdate_Load(object sender, EventArgs e)
