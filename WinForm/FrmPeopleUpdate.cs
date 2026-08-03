@@ -7,6 +7,13 @@ using WinForm.Repositories;
 
 namespace WinForm;
 
+public abstract class Methods<T> where T : class, new()
+{
+    public abstract void SetControls(T? p = null);
+    public abstract void FocusControl(ValidationResult validation);
+    public abstract bool ValidationControls();
+}
+
 public partial class FrmPeopleUpdate : Form
 {
     internal RepositoryPeople RepositoryPeople { get; }
@@ -29,42 +36,24 @@ public partial class FrmPeopleUpdate : Form
         CancelButton = (Button)ButEnd;
         TxtPrice.MaskCurrency();
         ChkActive.SetLayoutFocus();
-        SetControlValues();
+        SetControls();
         if (Id > 0)
         {
             People? people = await RepositoryPeople.GetAsync(Id);
             if (people != null)
             {
-                SetControlValues(people.Name, people.Price.ToTextDecimal(), people.CreatedAt.ToTextDateTime(), people.Active);
+                SetControls(people);
             }
         }
         TxtName.Focus();
     }
 
-    private void ButEnd_OnPressed(object sender, EventArgs e)
-    {
-        Close();
-    }
-
+    #region Events
     private async void ButSave_Click(object sender, EventArgs e)
     {
-        if (TxtName.Text.Trim().Length == 0)
+        Updated = false;
+        if (!ValidationControls(out decimal price, out DateTime createdAt))
         {
-            MessageCustomBox.Error("Nome é obrigatório.");
-            TxtName.Focus();
-            TxtName.SelectAll();
-            return;
-        }
-        if (TxtPrice.TryGetDecimalCurrency(out decimal price) == false)
-        {
-            MessageCustomBox.Error("Preço deve ser maior ou igual a zero.");
-            TxtPrice.Focus();
-            return;
-        }
-        if (TxtCreatedAt.TryGetDateTime(out DateTime createdAt) == false)
-        {
-            MessageCustomBox.Error("Data de criação inválida.");
-            TxtCreatedAt.Focus();
             return;
         }
         People people = new(Id, TxtName.Text.Trim(), price, ChkActive.Checked, createdAt);
@@ -72,13 +61,7 @@ public partial class FrmPeopleUpdate : Form
         if (validation.IsValid == false)
         {
             MessageCustomBox.Error(validation.Errors.GetErrors());
-            ValidationFailure? first = validation.Errors.FirstOrDefault();
-            if (first != null && !string.IsNullOrEmpty(first.PropertyName))
-            {
-                if (first.IsValue(nameof(People.Name))) TxtName.Focus();
-                if (first.IsValue(nameof(People.Price))) TxtPrice.Focus();
-                if (first.IsValue(nameof(People.CreatedAt))) TxtCreatedAt.Focus();
-            }
+            FocusControl(validation);
             return;
         }
         try
@@ -94,13 +77,11 @@ public partial class FrmPeopleUpdate : Form
             else
             {
                 MessageCustomBox.Error("Falha ao salvar o registro!");
-                Updated = false;
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            MessageCustomBox.Error("Erro ao salvar: " + ex.Message);
-            Updated = false;
+            MessageCustomBox.Error("Erro ao salvar o registro!");
         }
         finally
         {
@@ -109,11 +90,59 @@ public partial class FrmPeopleUpdate : Form
         }
     }
 
-    private void SetControlValues(string name = "", string price = "0,00", string? createdAt = null, bool active = false)
+    private void ButEnd_OnPressed(object sender, EventArgs e)
     {
-        TxtName.Text = name;
-        TxtPrice.Text = price;
-        TxtCreatedAt.Text = createdAt ?? DateTime.Now.ToTextDateTime();
-        ChkActive.Checked = active;
+        Close();
     }
+
+    #endregion
+
+    #region Methods_Default
+    private void SetControls(People? p = null)
+    {
+        TxtName.Text = p?.Name ?? "";
+        TxtPrice.Text = p?.Price.ToTextDecimal() ?? "0,00";
+        TxtCreatedAt.Text = p?.CreatedAt.ToTextDateTime() ?? DateTime.Now.ToTextDateTime();
+        ChkActive.Checked = p?.Active ?? false;
+    }
+
+    private void FocusControl(ValidationResult validation)
+    {
+        ValidationFailure? first = validation.Errors.FirstOrDefault();
+        if (first == null) return;
+        switch (first.PropertyName)
+        {
+            case nameof(People.Name): TxtName.Focus(); break;
+            case nameof(People.Price): TxtPrice.Focus(); break;
+            case nameof(People.CreatedAt): TxtCreatedAt.Focus(); break;
+        }
+    }
+
+    private bool ValidationControls(out decimal price, out DateTime createdAt)
+    {
+        price = 0;
+        createdAt = DateTime.MinValue;
+
+        if (TxtName.Text.Trim().Length == 0)
+        {
+            MessageCustomBox.Error("Nome é obrigatório.");
+            TxtName.Focus();
+            TxtName.SelectAll();
+            return false;
+        }
+        if (TxtPrice.TryGetDecimalCurrency(out price) == false)
+        {
+            MessageCustomBox.Error("Preço deve ser maior ou igual a zero.");
+            TxtPrice.Focus();
+            return false;
+        }
+        if (TxtCreatedAt.TryGetDateTime(out createdAt) == false)
+        {
+            MessageCustomBox.Error("Data de criação inválida.");
+            TxtCreatedAt.Focus();
+            return false;
+        }
+        return true;
+    }
+    #endregion
 }
